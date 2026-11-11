@@ -1,0 +1,40 @@
+/**
+ * A single project card. Used both inside the 3D ring and in the
+ * mobile / reduced-motion list. Styles live in Projects.css.
+ */
+export default function ProjectCard({ project, headingLevel = 3 }) {
+  const Heading = `h${headingLevel}`
+  const { title, description, tech, liveUrl, repoUrl, placeholder } = project
+
+  return (
+    <article className="project-card">
+      <div className="project-card__header">
+        <Heading className="project-card__title">{title}</Heading>
+        {placeholder && <span className="project-card__badge">Placeholder</span>}
+      </div>
+
+      <p className="project-card__desc">{description}</p>
+
+      <ul className="project-card__tech" aria-label={`Technologies used in ${title}`}>
+        {tech.map((t) => (
+          <li key={t}>{t}</li>
+        ))}
+      </ul>
+
+      {(liveUrl || repoUrl) && (
+        <div className="project-card__links">
+          {liveUrl && (
+            <a className="btn btn-primary" href={liveUrl} target="_blank" rel="noopener noreferrer">
+              Live site<span className="visually-hidden"> for {title} (opens in a new tab)</span>
+            </a>
+          )}
+          {repoUrl && (
+            <a className="btn btn-ghost" href={repoUrl} target="_blank" rel="noopener noreferrer">
+              Code<span className="visually-hidden"> for {title} on GitHub (opens in a new tab)</span>
+            </a>
+          )}
+        </div>
+      )}
+    </article>
+  )
+}

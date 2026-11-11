@@ -1,0 +1,98 @@
+.carousel {
+  --card-width: 280px; /* keep in sync with CARD_WIDTH in Carousel.jsx */
+  --card-height: 340px;
+  margin-top: 1.5rem;
+}
+
+.carousel__controls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.carousel__pause {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 36px;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s;
+}
+
+.carousel__pause:hover {
+  color: var(--text);
+  border-color: var(--accent);
+}
+
+/* The "camera": perspective gives the ring its depth */
+.carousel__scene {
+  position: relative;
+  height: calc(var(--card-height) + 7rem);
+  perspective: 1400px;
+  perspective-origin: 50% 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The ring that rotates; transform is set every frame from Carousel.jsx */
+.carousel__ring {
+  list-style: none;
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Every card starts stacked at the center, then gets its own rotateY + translateZ */
+.carousel__item {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  /* Hide cards while they face away, so we never see mirrored text */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Any card type (project, certificate) fills its slot in the ring.
+   Extra specificity so these beat the cards' own styles regardless of CSS load order. */
+.carousel__scene .carousel__ring .carousel__item > * {
+  width: 100%;
+  height: 100%;
+  /* Opaque background so cards behind don't show through */
+  background: linear-gradient(160deg, #1f1f30, #15151f);
+  transform: none; /* cancel standalone hover lifts, which fight the 3D transform */
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.carousel__scene .carousel__ring .carousel__item:hover > *,
+.carousel__scene .carousel__ring .carousel__item:focus-within > * {
+  border-color: rgba(139, 92, 246, 0.6);
+  box-shadow:
+    0 0 0 1px rgba(139, 92, 246, 0.25),
+    0 24px 60px -20px rgba(139, 92, 246, 0.45);
+}
+
+/* Soft reflection-like floor glow under the ring */
+.carousel__scene::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  width: min(80%, 720px);
+  height: 60px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, rgba(139, 92, 246, 0.25), transparent);
+  pointer-events: none;
+}

@@ -1,0 +1,332 @@
+/* ==========================================================================
+   Design tokens
+   ========================================================================== */
+:root {
+  /* Colors: all text colors pass WCAG AA against --bg and --surface */
+  --bg: #0b0b12;
+  --surface: #14141f;
+  --surface-2: #1c1c2b;
+  --border: rgba(255, 255, 255, 0.09);
+  --text: #ececf1;
+  --muted: #a3a3b8;
+  --accent: #8b5cf6;        /* violet: decorative use (borders, glows) */
+  --accent-strong: #7c3aed; /* button background, white text on it is ~5.7:1 */
+  --accent-text: #b4a0fb;   /* violet text on dark backgrounds */
+  --accent-2: #22d3ee;      /* cyan: gradient partner */
+  --focus: #facc15;         /* high-visibility focus ring */
+
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+
+  --radius: 14px;
+  --radius-sm: 8px;
+  --container: 1100px;
+  --nav-height: 64px;
+  --section-pad: clamp(4rem, 10vw, 7rem);
+
+  color-scheme: dark;
+}
+
+/* ==========================================================================
+   Reset / base
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Anchored sections land below the sticky navbar instead of under it */
+  scroll-padding-top: var(--nav-height);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading);
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--accent-text);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Visible, consistent keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* <main> receives focus from the skip link; no ring needed on the whole region */
+main:focus {
+  outline: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* ==========================================================================
+   Layout helpers
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 4vw, 2rem);
+}
+
+.section {
+  padding-block: var(--section-pad);
+}
+
+.section-eyebrow {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-text);
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  /* Stepped shadows give headings an extruded 3D edge */
+  text-shadow:
+    1px 1px 0 #4c1d95,
+    2px 2px 0 #3b1a78,
+    3px 3px 0 #2a1259,
+    0 12px 20px rgba(0, 0, 0, 0.45);
+}
+
+.section-lead {
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+/* Hidden visually but still read by screen readers */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 1000;
+  padding: 0.6rem 1rem;
+  background: var(--accent-strong);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  transform: translateY(-200%);
+  transition: transform 0.2s;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   Buttons: 3D "keys" with a solid bottom edge that press down when clicked
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px; /* comfortable touch target */
+  padding: 0.7rem 1.4rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s,
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: translateY(3px);
+}
+
+.btn-primary {
+  /* Gradient stays dark enough for white text (≥5.7:1) */
+  background: linear-gradient(180deg, var(--accent-strong), #6d28d9);
+  color: #fff;
+  box-shadow:
+    0 4px 0 #3b0f7a,
+    0 12px 24px -10px rgba(124, 58, 237, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(180deg, #6d28d9, #5b21b6);
+  box-shadow:
+    0 6px 0 #3b0f7a,
+    0 16px 28px -10px rgba(124, 58, 237, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:active {
+  box-shadow:
+    0 1px 0 #3b0f7a,
+    0 6px 12px -8px rgba(124, 58, 237, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-ghost {
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--border);
+  box-shadow:
+    0 4px 0 #0c0c14,
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.btn-ghost:hover {
+  border-color: var(--accent);
+  box-shadow:
+    0 6px 0 #0c0c14,
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.btn-ghost:active {
+  box-shadow:
+    0 1px 0 #0c0c14,
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+/* ==========================================================================
+   3D tilt cards: used with the useTilt() hook, which sets --tilt-x/--tilt-y
+   and --glare-* while the mouse is over the element
+   ========================================================================== */
+.tilt {
+  position: relative;
+  transform: perspective(1000px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transform-style: preserve-3d; /* lets children float at their own translateZ depth */
+  transition: transform 0.25s ease-out;
+}
+
+/* Light glare that follows the cursor */
+.tilt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.12),
+    transparent 55%
+  );
+  opacity: var(--glare-o, 0);
+  transition: opacity 0.3s;
+}
+
+/* ==========================================================================
+   Scroll reveal: content swings up from a tilted plane (see Reveal.jsx)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: perspective(1000px) rotateX(14deg) translateY(48px) scale(0.97);
+  transform-origin: 50% 0;
+  transition:
+    opacity 0.8s ease,
+    transform 0.9s cubic-bezier(0.2, 0.75, 0.25, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Printing / saving as PDF never scrolls, so show everything */
+@media print {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   Reduced motion: kill smooth scroll and non-essential transitions
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Show revealed content immediately */
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

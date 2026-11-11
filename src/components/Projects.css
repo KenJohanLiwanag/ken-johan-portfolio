@@ -1,0 +1,117 @@
+.projects {
+  /* The 3D ring can extend past the viewport edges; never cause sideways scroll */
+  overflow: hidden;
+}
+
+/* ---- Fallback list (mobile / reduced motion) ---------------------------- */
+.projects__list {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-bottom: 1rem; /* room for the scrollbar */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.projects__list-item {
+  flex: 0 0 min(85%, 320px);
+  scroll-snap-align: start;
+  display: flex;
+}
+
+/* With reduced motion on a wide screen there's room for a regular grid */
+@media (min-width: 768px) {
+  .projects__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    overflow: visible;
+  }
+}
+
+/* ---- Project card (shared by the ring and the list) --------------------- */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, var(--surface-2), var(--surface));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.9);
+  transform-origin: 50% 100%;
+  transition:
+    transform 0.3s,
+    border-color 0.3s;
+}
+
+/* List view (when there's a mouse): card tips back in 3D and lifts on hover */
+@media (hover: hover) {
+  .projects__list-item:hover .project-card {
+    transform: perspective(800px) rotateX(6deg) translateY(-4px);
+    border-color: rgba(139, 92, 246, 0.5);
+  }
+}
+
+.project-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.project-card__title {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.project-card__badge {
+  flex-shrink: 0;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  border: 1px dashed #fbbf24;
+  color: #fcd34d;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.project-card__desc {
+  color: var(--muted);
+  font-size: 0.95rem;
+  flex-grow: 1;
+}
+
+.project-card__tech {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1.25rem;
+}
+
+.project-card__tech li {
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  background: rgba(34, 211, 238, 0.1);
+  color: #a5f3fc;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.project-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-card__links .btn {
+  min-height: 40px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}

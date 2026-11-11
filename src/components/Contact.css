@@ -1,0 +1,89 @@
+/* Untransformed hit area for the mouse tilt, sized exactly like the panel */
+.contact__panel-area {
+  max-width: 780px;
+  margin-inline: auto;
+}
+
+.contact__panel {
+  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.25rem, 5vw, 3rem);
+  text-align: center;
+  border-radius: 24px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  background:
+    radial-gradient(30rem 16rem at 15% 0%, rgba(139, 92, 246, 0.22), transparent 60%),
+    radial-gradient(26rem 14rem at 90% 100%, rgba(34, 211, 238, 0.12), transparent 60%),
+    var(--surface);
+  box-shadow:
+    0 40px 80px -40px rgba(0, 0, 0, 0.95),
+    0 0 60px -30px rgba(139, 92, 246, 0.6);
+}
+
+/* Depth layers inside the tilting panel (.tilt sets preserve-3d) */
+.contact__layer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact__layer--text {
+  transform: translateZ(30px);
+}
+
+.contact__layer--actions {
+  transform: translateZ(55px);
+}
+
+.contact__lead {
+  margin-inline: auto;
+  margin-bottom: 2rem;
+}
+
+.contact__email {
+  font-size: 1rem;
+  padding: 0.85rem 1.6rem;
+  margin-bottom: 1.75rem;
+  max-width: 100%;
+  overflow-wrap: anywhere; /* long addresses wrap instead of overflowing */
+}
+
+.contact__socials {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.contact__social {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  /* Raised edge, like the buttons */
+  box-shadow: 0 4px 0 #0c0c14;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s,
+    color 0.2s,
+    transform 0.15s,
+    box-shadow 0.15s;
+}
+
+.contact__social:hover {
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #0c0c14;
+}
+
+.contact__social:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 #0c0c14;
+}

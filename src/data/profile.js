@@ -14,7 +14,7 @@ export const profile = {
 
   // Each string is one paragraph in the About section
   bio: [
-    'Hi! I am Ken, a Computer Science student at FEU Institute of Technology in Manila. For my thesis, our team built ODIN, an 8-bit RPG tutoring system that spots when novice programmers are struggling and steps in with hints. We wrote it up as an ACM-format research paper.',
+    'Hi! I am Ken, a Computer Science student at FEU Institute of Technology in Manila. For my thesis, our team built ODIN, an 8-bit RPG tutoring system that spots when novice programmers are struggling and steps in with hints.',
     'I hold the IT Specialist certification in Python and the PMI Project Management Ready® credential. I enjoy the whole journey of a project, from planning and research to front-end, back-end, and game development.',
   ],
 

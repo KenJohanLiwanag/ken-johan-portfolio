@@ -27,7 +27,7 @@ export const projects = [
     repoUrl: '',
     document: {
       label: 'Read paper',
-      title: 'ODIN research paper (ACM format)',
+      title: 'ODIN research paper',
       file: '/files/odin-insomnicode-paper.pdf',
     },
   },

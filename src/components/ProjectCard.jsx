@@ -4,22 +4,24 @@
  */
 export default function ProjectCard({ project, headingLevel = 3 }) {
   const Heading = `h${headingLevel}`
-  const { title, description, tech, liveUrl, repoUrl, placeholder } = project
+  const { title, description, tech = [], liveUrl, repoUrl, tba } = project
 
   return (
-    <article className="project-card">
+    <article className={`project-card${tba ? ' project-card--tba' : ''}`}>
       <div className="project-card__header">
         <Heading className="project-card__title">{title}</Heading>
-        {placeholder && <span className="project-card__badge">Placeholder</span>}
+        {tba && <span className="project-card__badge">Coming soon</span>}
       </div>
 
       <p className="project-card__desc">{description}</p>
 
-      <ul className="project-card__tech" aria-label={`Technologies used in ${title}`}>
-        {tech.map((t) => (
-          <li key={t}>{t}</li>
-        ))}
-      </ul>
+      {tech.length > 0 && (
+        <ul className="project-card__tech" aria-label={`Technologies used in ${title}`}>
+          {tech.map((t) => (
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
+      )}
 
       {(liveUrl || repoUrl) && (
         <div className="project-card__links">

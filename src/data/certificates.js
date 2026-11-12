@@ -4,63 +4,66 @@
 // Fields:
 //   id            unique string (used as React key)
 //   title         certificate / course name
-//   issuer        who issued it (e.g. freeCodeCamp, Coursera, Google, your school)
-//   date          display text, e.g. 'March 2026' ('' to hide)
+//   issuer        who issued it
+//   date          display text, e.g. 'March 18, 2026' ('' to hide)
+//   credentialId  verification code printed on the certificate ('' to hide)
 //   credentialUrl link to verify / view it ('' to hide the button)
 //   image         optional thumbnail, e.g. '/certificates/my-cert.png'
 //                 (put the file in /public/certificates/). '' shows an icon instead.
-//   placeholder   true shows a "Placeholder" badge; delete it once it's real
+//   tba           true shows a "Coming soon" badge (for slots not filled yet)
 //
-// To add a certificate: copy one object below, paste it into the list, and edit it.
-// To remove one: delete its object. If the list is empty, the section hides itself.
+// To add a certificate: replace one of the TBA entries below with it.
 // Shown as a 3D rotating ring on desktop when there are 3+ certificates (5–8 looks
 // best); fewer than 3, phones, or reduced-motion users get a simple grid instead.
 // =============================================================================
 
 export const certificates = [
   {
-    id: 'cert-placeholder-1',
-    title: 'Placeholder Certificate One',
-    issuer: 'Issuing Organization',
-    date: 'Month Year',
-    credentialUrl: 'https://example.com',
+    id: 'pmi-project-management-ready',
+    title: 'PMI Project Management Ready®',
+    issuer: 'Project Management Institute (via Certiport)',
+    date: 'March 18, 2026',
+    credentialId: 'wYUSR-2FaU',
+    credentialUrl: 'https://verify.certiport.com',
     image: '',
-    placeholder: true,
   },
   {
-    id: 'cert-placeholder-2',
-    title: 'Placeholder Certificate Two',
-    issuer: 'Issuing Organization',
-    date: 'Month Year',
-    credentialUrl: 'https://example.com',
+    id: 'its-python',
+    title: 'Information Technology Specialist: Python',
+    issuer: 'Certiport · Pearson',
+    date: 'July 16, 2025',
+    credentialId: '28K7-XMzH',
+    credentialUrl: 'https://verify.certiport.com',
     image: '',
-    placeholder: true,
   },
   {
-    id: 'cert-placeholder-3',
-    title: 'Placeholder Certificate Three',
-    issuer: 'Issuing Organization',
-    date: 'Month Year',
+    id: 'tba-1',
+    title: 'TBA',
+    issuer: 'More certifications coming soon',
+    date: '',
+    credentialId: '',
     credentialUrl: '',
     image: '',
-    placeholder: true,
+    tba: true,
   },
   {
-    id: 'cert-placeholder-4',
-    title: 'Placeholder Certificate Four',
-    issuer: 'Issuing Organization',
-    date: 'Month Year',
-    credentialUrl: 'https://example.com',
-    image: '',
-    placeholder: true,
-  },
-  {
-    id: 'cert-placeholder-5',
-    title: 'Placeholder Certificate Five',
-    issuer: 'Issuing Organization',
+    id: 'tba-2',
+    title: 'TBA',
+    issuer: 'More certifications coming soon',
     date: '',
-    credentialUrl: 'https://example.com',
+    credentialId: '',
+    credentialUrl: '',
     image: '',
-    placeholder: true,
+    tba: true,
+  },
+  {
+    id: 'tba-3',
+    title: 'TBA',
+    issuer: 'More certifications coming soon',
+    date: '',
+    credentialId: '',
+    credentialUrl: '',
+    image: '',
+    tba: true,
   },
 ]

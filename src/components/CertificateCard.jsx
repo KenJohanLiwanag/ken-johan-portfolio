@@ -10,10 +10,10 @@ const AwardIcon = () => (
 )
 
 export default function CertificateCard({ certificate }) {
-  const { title, issuer, date, credentialUrl, image, placeholder } = certificate
+  const { title, issuer, date, credentialId, credentialUrl, image, tba } = certificate
 
   return (
-    <article className="cert-card">
+    <article className={`cert-card${tba ? ' cert-card--tba' : ''}`}>
       <div className="cert-card__media">
         {image ? (
           <img src={image} alt={`${title} certificate from ${issuer}`} loading="lazy" />
@@ -27,7 +27,7 @@ export default function CertificateCard({ certificate }) {
       <div className="cert-card__body">
         <div className="cert-card__header">
           <h3 className="cert-card__title">{title}</h3>
-          {placeholder && <span className="project-card__badge">Placeholder</span>}
+          {tba && <span className="project-card__badge">Coming soon</span>}
         </div>
         <p className="cert-card__meta">
           {issuer}
@@ -40,9 +40,15 @@ export default function CertificateCard({ certificate }) {
           )}
         </p>
 
+        {credentialId && (
+          <p className="cert-card__id">
+            Credential ID: <span className="cert-card__code">{credentialId}</span>
+          </p>
+        )}
+
         {credentialUrl && (
           <a className="cert-card__link" href={credentialUrl} target="_blank" rel="noopener noreferrer">
-            View credential
+            Verify credential
             <span className="visually-hidden"> for {title} (opens in a new tab)</span>
             <span aria-hidden="true"> ↗</span>
           </a>

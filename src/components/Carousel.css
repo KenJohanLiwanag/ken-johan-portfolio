@@ -1,6 +1,6 @@
 .carousel {
   --card-width: 280px; /* keep in sync with CARD_WIDTH in Carousel.jsx */
-  --card-height: 340px;
+  --card-height: 420px; /* tall enough for a 2-sentence description + tech chips + button */
   margin-top: 1.5rem;
 }
 

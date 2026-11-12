@@ -64,6 +64,11 @@
   margin-bottom: 0.6rem;
 }
 
+/* "Coming soon" slots look quieter than real projects */
+.project-card--tba .project-card__title {
+  color: var(--muted);
+}
+
 .project-card__title {
   font-size: 1.2rem;
   margin: 0;

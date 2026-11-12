@@ -28,13 +28,20 @@ export default function About() {
           <div ref={tiltRef}>
             <div className="about__skills-card tilt">
               <h3 className="about__skills-title">Skills &amp; tools</h3>
-              <ul className="about__skills">
-                {profile.skills.map((skill) => (
-                  <li key={skill} className="about__skill">
-                    {skill}
-                  </li>
+              <div className="about__skill-groups">
+                {profile.skills.map(({ group, items }) => (
+                  <div key={group} className="about__skill-group">
+                    <h4 className="about__skill-group-title">{group}</h4>
+                    <ul className="about__skills">
+                      {items.map((skill) => (
+                        <li key={skill} className="about__skill">
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
         </Reveal>

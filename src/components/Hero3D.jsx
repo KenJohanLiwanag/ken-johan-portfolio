@@ -4,10 +4,10 @@ import './Hero3D.css'
 const FACES = [
   { side: 'front', label: '</>' },
   { side: 'back', label: 'KJ' },
-  { side: 'right', label: 'JS' },
-  { side: 'left', label: 'CSS' },
+  { side: 'right', label: 'C#' },
+  { side: 'left', label: 'Py' },
   { side: 'top', label: 'React' },
-  { side: 'bottom', label: 'Git' },
+  { side: 'bottom', label: 'JS' },
 ]
 
 /**

@@ -92,6 +92,24 @@
   flex-grow: 1;
 }
 
+.cert-card__id {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+/* Monospace so codes like 28K7-XMzH are easy to read and type */
+.cert-card__code {
+  font-family: ui-monospace, 'Cascadia Code', Consolas, monospace;
+  color: var(--text);
+  letter-spacing: 0.04em;
+}
+
+/* "Coming soon" slots look quieter than real certificates */
+.cert-card--tba .cert-card__icon {
+  opacity: 0.45;
+}
+
 .cert-card__link {
   align-self: flex-start;
   font-weight: 600;

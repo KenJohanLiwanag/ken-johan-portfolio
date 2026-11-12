@@ -30,12 +30,28 @@
   transform: translateZ(25px);
 }
 
+/* All the key groups float together on one raised layer */
+.about__skill-groups {
+  display: grid;
+  gap: 1.1rem;
+  transform: translateZ(45px);
+}
+
+.about__skill-group-title {
+  margin: 0 0 0.55rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 .about__skills {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  transform: translateZ(45px);
 }
 
 /* Skills styled as 3D keyboard keys that press down on hover */

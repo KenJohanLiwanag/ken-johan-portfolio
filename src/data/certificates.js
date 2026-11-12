@@ -61,14 +61,4 @@ export const certificates = [
     image: '',
     tba: true,
   },
-  {
-    id: 'tba-3',
-    title: 'TBA',
-    issuer: 'More certifications coming soon',
-    date: '',
-    credentialId: '',
-    credentialUrl: '',
-    image: '',
-    tba: true,
-  },
 ]

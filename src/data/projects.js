@@ -49,22 +49,4 @@ export const projects = [
     repoUrl: '',
     tba: true,
   },
-  {
-    id: 'tba-3',
-    title: 'TBA',
-    description: 'A new project is on the way. Check back soon!',
-    tech: [],
-    liveUrl: '',
-    repoUrl: '',
-    tba: true,
-  },
-  {
-    id: 'tba-4',
-    title: 'TBA',
-    description: 'A new project is on the way. Check back soon!',
-    tech: [],
-    liveUrl: '',
-    repoUrl: '',
-    tba: true,
-  },
 ]

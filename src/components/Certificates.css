@@ -49,6 +49,10 @@
   border-bottom: 1px solid var(--border);
 }
 
+.cert-card__media {
+  overflow: hidden;
+}
+
 .cert-card__media img {
   width: 100%;
   height: 100%;
@@ -108,6 +112,19 @@
 /* "Coming soon" slots look quieter than real certificates */
 .cert-card--tba .cert-card__icon {
   opacity: 0.45;
+}
+
+.cert-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.9rem;
+}
+
+.cert-card__actions .cert-card__view {
+  min-height: 38px;
+  padding: 0.45rem 1rem;
+  font-size: 0.85rem;
 }
 
 .cert-card__link {

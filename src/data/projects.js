@@ -8,6 +8,8 @@
 //   tech        array of technologies used ([] to hide)
 //   liveUrl     link to the live site ('' to hide the button)
 //   repoUrl     link to the source code ('' to hide the button)
+//   document    optional { label, title, file } — a PDF in /public/files/ that
+//               opens in the on-page viewer (e.g. a paper or report)
 //   tba         true shows a "Coming soon" badge (for slots not filled yet)
 //
 // To add a project: replace one of the TBA entries below with your project.
@@ -23,6 +25,11 @@ export const projects = [
     tech: ['C#', 'Godot', 'ASP.NET Core', 'Roslyn', 'PostgreSQL'],
     liveUrl: 'https://insomnicode-odin.vercel.app/',
     repoUrl: '',
+    document: {
+      label: 'Read paper',
+      title: 'ODIN research paper (ACM format)',
+      file: '/files/odin-insomnicode-paper.pdf',
+    },
   },
   {
     id: 'tba-1',

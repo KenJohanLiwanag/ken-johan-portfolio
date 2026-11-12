@@ -1,10 +1,12 @@
+import FileViewer from './FileViewer.jsx'
+
 /**
  * A single project card. Used both inside the 3D ring and in the
  * mobile / reduced-motion list. Styles live in Projects.css.
  */
 export default function ProjectCard({ project, headingLevel = 3 }) {
   const Heading = `h${headingLevel}`
-  const { title, description, tech = [], liveUrl, repoUrl, tba } = project
+  const { title, description, tech = [], liveUrl, repoUrl, document: doc, tba } = project
 
   return (
     <article className={`project-card${tba ? ' project-card--tba' : ''}`}>
@@ -23,7 +25,7 @@ export default function ProjectCard({ project, headingLevel = 3 }) {
         </ul>
       )}
 
-      {(liveUrl || repoUrl) && (
+      {(liveUrl || repoUrl || doc) && (
         <div className="project-card__links">
           {liveUrl && (
             <a className="btn btn-primary" href={liveUrl} target="_blank" rel="noopener noreferrer">
@@ -35,6 +37,7 @@ export default function ProjectCard({ project, headingLevel = 3 }) {
               Code<span className="visually-hidden"> for {title} on GitHub (opens in a new tab)</span>
             </a>
           )}
+          {doc && <FileViewer file={doc.file} title={doc.title} label={doc.label} />}
         </div>
       )}
     </article>

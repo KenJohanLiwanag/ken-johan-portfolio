@@ -1,3 +1,5 @@
+import FileViewer from './FileViewer.jsx'
+
 /**
  * A single certificate card. Used both inside the 3D ring and in the
  * mobile / reduced-motion grid. Styles live in Certificates.css.
@@ -10,7 +12,7 @@ const AwardIcon = () => (
 )
 
 export default function CertificateCard({ certificate }) {
-  const { title, issuer, date, credentialId, credentialUrl, image, tba } = certificate
+  const { title, issuer, date, credentialId, credentialUrl, image, file, tba } = certificate
 
   return (
     <article className={`cert-card${tba ? ' cert-card--tba' : ''}`}>
@@ -46,12 +48,25 @@ export default function CertificateCard({ certificate }) {
           </p>
         )}
 
-        {credentialUrl && (
-          <a className="cert-card__link" href={credentialUrl} target="_blank" rel="noopener noreferrer">
-            Verify credential
-            <span className="visually-hidden"> for {title} (opens in a new tab)</span>
-            <span aria-hidden="true"> ↗</span>
-          </a>
+        {(file || credentialUrl) && (
+          <div className="cert-card__actions">
+            {file && (
+              <FileViewer
+                file={file}
+                image={image}
+                title={title}
+                label="View certificate"
+                className="btn btn-primary cert-card__view"
+              />
+            )}
+            {credentialUrl && (
+              <a className="cert-card__link" href={credentialUrl} target="_blank" rel="noopener noreferrer">
+                Verify
+                <span className="visually-hidden"> {title} on Certiport (opens in a new tab)</span>
+                <span aria-hidden="true"> ↗</span>
+              </a>
+            )}
+          </div>
         )}
       </div>
     </article>

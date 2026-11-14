@@ -4,7 +4,6 @@
 
 export const profile = {
   name: 'Ken Johan Liwanag',
-  shortName: 'KJL', // shown as the logo in the navbar
   title: 'Computer Science Student · Software Developer',
   location: 'Philippines',
 

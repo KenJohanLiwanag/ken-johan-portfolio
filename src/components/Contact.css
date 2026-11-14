@@ -14,7 +14,7 @@
     radial-gradient(26rem 14rem at 90% 100%, rgba(34, 211, 238, 0.12), transparent 60%),
     var(--surface);
   box-shadow:
-    0 40px 80px -40px rgba(0, 0, 0, 0.95),
+    0 40px 80px -40px var(--shadow),
     0 0 60px -30px rgba(139, 92, 246, 0.6);
 }
 
@@ -67,7 +67,7 @@
   text-decoration: none;
   font-weight: 500;
   /* Raised edge, like the buttons */
-  box-shadow: 0 4px 0 #0c0c14;
+  box-shadow: 0 4px 0 var(--key-edge);
   transition:
     border-color 0.2s,
     background-color 0.2s,
@@ -78,12 +78,12 @@
 
 .contact__social:hover {
   border-color: var(--accent);
-  color: #fff;
+  color: var(--text);
   transform: translateY(-2px);
-  box-shadow: 0 6px 0 #0c0c14;
+  box-shadow: 0 6px 0 var(--key-edge);
 }
 
 .contact__social:active {
   transform: translateY(3px);
-  box-shadow: 0 1px 0 #0c0c14;
+  box-shadow: 0 1px 0 var(--key-edge);
 }

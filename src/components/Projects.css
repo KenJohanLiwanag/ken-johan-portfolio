@@ -41,7 +41,7 @@
   background: linear-gradient(160deg, var(--surface-2), var(--surface));
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 20px 40px -24px var(--shadow);
   transform-origin: 50% 100%;
   transition:
     transform 0.3s,
@@ -64,6 +64,22 @@
   margin-bottom: 0.6rem;
 }
 
+/* Project logo beside the title. Pixel-art logos (like ODIN's) stay crisp
+   instead of being blurred when scaled. */
+.project-card__logo {
+  flex-shrink: 0;
+  width: 52px;
+  height: auto;
+  image-rendering: pixelated;
+  filter: drop-shadow(0 6px 10px rgba(34, 211, 238, 0.35));
+}
+
+/* With a logo, centre the title vertically next to it and push any badge right */
+.project-card__header:has(.project-card__logo) {
+  align-items: center;
+  justify-content: flex-start;
+}
+
 /* "Coming soon" slots look quieter than real projects */
 .project-card--tba .project-card__title {
   color: var(--muted);
@@ -78,8 +94,8 @@
   flex-shrink: 0;
   padding: 0.15rem 0.55rem;
   border-radius: 999px;
-  border: 1px dashed #fbbf24;
-  color: #fcd34d;
+  border: 1px dashed var(--badge-border);
+  color: var(--badge-text);
   font-size: 0.7rem;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -103,8 +119,8 @@
 .project-card__tech li {
   padding: 0.2rem 0.6rem;
   border-radius: 6px;
-  background: rgba(34, 211, 238, 0.1);
-  color: #a5f3fc;
+  background: var(--tech-bg);
+  color: var(--tech-text);
   font-size: 0.78rem;
   font-weight: 500;
 }

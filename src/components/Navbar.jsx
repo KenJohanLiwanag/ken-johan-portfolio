@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { profile } from '../data/profile.js'
+import ThemeToggle from './ThemeToggle.jsx'
 import './Navbar.css'
 
 const NAV_LINKS = [
@@ -41,10 +41,7 @@ export default function Navbar() {
   return (
     <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`}>
       <nav className="navbar__inner container" aria-label="Main">
-        <a href="#top" className="navbar__brand" onClick={close}>
-          {profile.shortName}
-          <span className="visually-hidden"> – {profile.name}, back to top</span>
-        </a>
+        <ThemeToggle />
 
         <button
           ref={toggleRef}

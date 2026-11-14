@@ -96,14 +96,14 @@
   font-size: clamp(2.6rem, 7vw, 4.6rem);
   font-weight: 700;
   margin-bottom: 0.25em;
-  background: linear-gradient(120deg, #fff 30%, var(--accent-text) 70%, var(--accent-2));
+  background: var(--hero-name-fill);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   /* Stacked 1px drop-shadows build an extruded 3D edge (text-shadow doesn't
-     work with gradient-clipped text, but filter: drop-shadow does) */
-  filter: drop-shadow(1px 1px 0 #5b21b6) drop-shadow(1px 1px 0 #4c1d95) drop-shadow(1px 1px 0 #3b0f7a)
-    drop-shadow(0 14px 18px rgba(0, 0, 0, 0.55));
+     work with gradient-clipped text, but filter: drop-shadow does).
+     Both the fill and the edge colours come from the theme tokens. */
+  filter: var(--hero-name-depth);
 }
 
 .hero__title {

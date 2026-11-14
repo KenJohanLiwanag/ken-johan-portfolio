@@ -4,6 +4,7 @@
 // Fields:
 //   id          unique string (used as React key)
 //   title       project name
+//   logo        optional logo image in /public/projects/, shown beside the title
 //   description one or two short sentences
 //   tech        array of technologies used ([] to hide)
 //   liveUrl     link to the live site ('' to hide the button)
@@ -20,6 +21,7 @@ export const projects = [
   {
     id: 'odin',
     title: 'ODIN',
+    logo: '/projects/odin-logo.png',
     description:
       'Team InsomniCode’s thesis: an 8-bit RPG tutoring system that detects when novice C# programmers are struggling and responds with in-game NPC hints. Students’ test scores rose significantly after using it.',
     tech: ['C#', 'Godot', 'ASP.NET Core', 'Roslyn', 'PostgreSQL'],

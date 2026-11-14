@@ -6,11 +6,12 @@ import FileViewer from './FileViewer.jsx'
  */
 export default function ProjectCard({ project, headingLevel = 3 }) {
   const Heading = `h${headingLevel}`
-  const { title, description, tech = [], liveUrl, repoUrl, document: doc, tba } = project
+  const { title, logo, description, tech = [], liveUrl, repoUrl, document: doc, tba } = project
 
   return (
     <article className={`project-card${tba ? ' project-card--tba' : ''}`}>
       <div className="project-card__header">
+        {logo && <img className="project-card__logo" src={logo} alt={`${title} logo`} width="52" height="66" />}
         <Heading className="project-card__title">{title}</Heading>
         {tba && <span className="project-card__badge">Coming soon</span>}
       </div>

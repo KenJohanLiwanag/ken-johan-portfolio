@@ -1,6 +1,6 @@
 .carousel {
   --card-width: 280px; /* keep in sync with CARD_WIDTH in Carousel.jsx */
-  --card-height: 420px; /* tall enough for a 2-sentence description + tech chips + button */
+  --card-height: 460px; /* measured: fits ODIN (logo + 2-sentence description + chips + buttons) */
   margin-top: 1.5rem;
 }
 
@@ -69,7 +69,7 @@
   width: 100%;
   height: 100%;
   /* Opaque background so cards behind don't show through */
-  background: linear-gradient(160deg, #1f1f30, #15151f);
+  background: var(--ring-card-bg);
   transform: none; /* cancel standalone hover lifts, which fight the 3D transform */
   transition:
     border-color 0.2s,

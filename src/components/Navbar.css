@@ -3,7 +3,7 @@
   top: 0;
   z-index: 100;
   height: var(--nav-height);
-  background: rgba(11, 11, 18, 0.72);
+  background: var(--nav-bg);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid transparent;
@@ -14,27 +14,59 @@
 
 .navbar--scrolled {
   border-bottom-color: var(--border);
-  box-shadow: 0 8px 24px -16px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 8px 24px -16px var(--shadow);
 }
 
 .navbar__inner {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end; /* no logo on the left: everything sits on the right */
+  gap: 0.5rem;
 }
 
-.navbar__brand {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.25rem;
-  letter-spacing: 0.02em;
-  text-decoration: none;
-  background: linear-gradient(135deg, var(--accent-text), var(--accent-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  padding: 0.25rem 0;
+/* Light/dark switch: a small raised round key */
+.theme-toggle {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--key-edge);
+  transition:
+    transform 0.15s,
+    box-shadow 0.15s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent-text);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 var(--key-edge);
+}
+
+.theme-toggle:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 var(--key-edge);
+}
+
+/* Icon spins in when the theme changes (the button re-renders a new svg) */
+.theme-toggle svg {
+  animation: theme-icon-in 0.4s cubic-bezier(0.2, 0.75, 0.25, 1);
+}
+
+@keyframes theme-icon-in {
+  from {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0.6);
+  }
 }
 
 .navbar__links {
@@ -58,7 +90,7 @@
 
 .navbar__links a:hover {
   color: var(--text);
-  background: rgba(255, 255, 255, 0.06);
+  background: var(--hover-tint);
 }
 
 /* Hamburger button: only shown on small screens */
@@ -113,7 +145,7 @@
     flex-direction: column;
     gap: 0;
     padding: 0.5rem clamp(1rem, 4vw, 2rem) 1rem;
-    background: rgba(11, 11, 18, 0.97);
+    background: var(--nav-menu-bg);
     border-bottom: 1px solid var(--border);
     display: none;
   }

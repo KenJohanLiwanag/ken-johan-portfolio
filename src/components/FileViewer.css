@@ -12,7 +12,7 @@
   background: var(--surface);
   color: var(--text);
   box-shadow:
-    0 40px 80px -20px rgba(0, 0, 0, 0.9),
+    0 40px 80px -20px var(--shadow),
     0 0 60px -30px rgba(139, 92, 246, 0.7);
   overflow: hidden;
 }
@@ -93,7 +93,7 @@ body:has(.viewer[open]) {
 .viewer__body {
   flex: 1;
   min-height: 0;
-  background: #0e0e16;
+  background: var(--viewer-bg);
 }
 
 .viewer__body iframe {
@@ -116,5 +116,5 @@ body:has(.viewer[open]) {
   max-height: 100%;
   object-fit: contain;
   border-radius: 6px;
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.9);
+  box-shadow: 0 20px 40px -20px var(--shadow);
 }

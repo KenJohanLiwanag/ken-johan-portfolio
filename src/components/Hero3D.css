@@ -58,8 +58,8 @@
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: calc(var(--cube) * 0.2);
-  color: #f5f3ff;
-  text-shadow: 0 0 18px rgba(139, 92, 246, 0.9);
+  color: var(--cube-text);
+  text-shadow: 0 0 18px var(--cube-glow);
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(34, 211, 238, 0.14));
   border: 1px solid rgba(180, 160, 251, 0.6);
   border-radius: 6px;

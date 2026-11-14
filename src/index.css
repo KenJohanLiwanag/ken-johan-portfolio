@@ -1,6 +1,10 @@
 /* ==========================================================================
    Design tokens
    ========================================================================== */
+/* Themes: dark is the default. The inline script in index.html sets
+   data-theme="light" | "dark" on <html> before first paint (saved choice, else
+   the system setting), and ThemeToggle.jsx switches it. Every colour that
+   differs between themes is a token here; components never hard-code them. */
 :root {
   /* Colors: all text colors pass WCAG AA against --bg and --surface */
   --bg: #0b0b12;
@@ -11,9 +15,37 @@
   --muted: #a3a3b8;
   --accent: #8b5cf6;        /* violet: decorative use (borders, glows) */
   --accent-strong: #7c3aed; /* button background, white text on it is ~5.7:1 */
-  --accent-text: #b4a0fb;   /* violet text on dark backgrounds */
+  --accent-text: #b4a0fb;   /* violet text on the background */
   --accent-2: #22d3ee;      /* cyan: gradient partner */
   --focus: #facc15;         /* high-visibility focus ring */
+
+  /* Surfaces & depth */
+  --nav-bg: rgba(11, 11, 18, 0.72);
+  --nav-menu-bg: rgba(11, 11, 18, 0.97);
+  --hover-tint: rgba(255, 255, 255, 0.06);
+  --ring-card-bg: linear-gradient(160deg, #1f1f30, #15151f); /* opaque cards in the 3D ring */
+  --key-top: #2a2a3e;   /* 3D keys: face gradient… */
+  --key-bottom: #1c1c2b;
+  --key-edge: #0c0c14;  /* …and the solid "side" under keys and ghost buttons */
+  --key-border: rgba(255, 255, 255, 0.1);
+  --key-shine: rgba(255, 255, 255, 0.08);
+  --shadow: rgba(0, 0, 0, 0.9); /* deep drop shadows under cards and panels */
+  --glare: rgba(255, 255, 255, 0.12);
+  --viewer-bg: #0e0e16;
+
+  /* Text effects */
+  --title-depth: 1px 1px 0 #4c1d95, 2px 2px 0 #3b1a78, 3px 3px 0 #2a1259, 0 12px 20px rgba(0, 0, 0, 0.45);
+  --hero-name-fill: linear-gradient(120deg, #fff 30%, var(--accent-text) 70%, var(--accent-2));
+  --hero-name-depth: drop-shadow(1px 1px 0 #5b21b6) drop-shadow(1px 1px 0 #4c1d95) drop-shadow(1px 1px 0 #3b0f7a)
+    drop-shadow(0 14px 18px rgba(0, 0, 0, 0.55));
+  --cube-text: #f5f3ff;
+  --cube-glow: rgba(139, 92, 246, 0.9);
+
+  /* Chips & badges */
+  --tech-bg: rgba(34, 211, 238, 0.1);
+  --tech-text: #a5f3fc;
+  --badge-border: #fbbf24;
+  --badge-text: #fcd34d;
 
   --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
@@ -25,6 +57,46 @@
   --section-pad: clamp(4rem, 10vw, 7rem);
 
   color-scheme: dark;
+}
+
+/* Light theme: soft lavender-white. Text colours re-checked for WCAG AA. */
+:root[data-theme='light'] {
+  --bg: #f6f5fb;
+  --surface: #ffffff;
+  --surface-2: #efedf7;
+  --border: rgba(30, 20, 60, 0.12);
+  --text: #16151f;
+  --muted: #545468;        /* ~7:1 on --bg */
+  --accent-text: #6d28d9;  /* ~6.9:1 on white */
+  --accent-2: #0891b2;
+  --focus: #c2410c;        /* orange ring, ~5:1 on white */
+
+  --nav-bg: rgba(246, 245, 251, 0.78);
+  --nav-menu-bg: rgba(246, 245, 251, 0.98);
+  --hover-tint: rgba(76, 29, 149, 0.07);
+  --ring-card-bg: linear-gradient(160deg, #ffffff, #f1eefb);
+  --key-top: #ffffff;
+  --key-bottom: #ece8f7;
+  --key-edge: #c8c0e0;
+  --key-border: rgba(76, 29, 149, 0.16);
+  --key-shine: rgba(255, 255, 255, 0.9);
+  --shadow: rgba(60, 40, 120, 0.28);
+  --glare: rgba(255, 255, 255, 0.55);
+  --viewer-bg: #e7e4f1;
+
+  --title-depth: 1px 1px 0 #ddd6fe, 2px 2px 0 #c4b5fd, 3px 3px 0 #a78bfa, 0 12px 20px rgba(76, 29, 149, 0.18);
+  --hero-name-fill: linear-gradient(120deg, #1e1b4b 30%, #6d28d9 70%, #0e7490);
+  --hero-name-depth: drop-shadow(1px 1px 0 #ddd6fe) drop-shadow(1px 1px 0 #c4b5fd) drop-shadow(1px 1px 0 #a78bfa)
+    drop-shadow(0 14px 18px rgba(76, 29, 149, 0.2));
+  --cube-text: #3b0f7a;
+  --cube-glow: rgba(255, 255, 255, 0.9);
+
+  --tech-bg: rgba(8, 145, 178, 0.1);
+  --tech-text: #0e6a80;    /* ~5.9:1 on white */
+  --badge-border: #d97706;
+  --badge-text: #92400e;
+
+  color-scheme: light;
 }
 
 /* ==========================================================================
@@ -53,6 +125,10 @@ body {
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  /* Smooth fade when switching themes */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 h1,
@@ -134,11 +210,7 @@ main:focus {
 .section-title {
   font-size: clamp(1.9rem, 4vw, 2.6rem);
   /* Stepped shadows give headings an extruded 3D edge */
-  text-shadow:
-    1px 1px 0 #4c1d95,
-    2px 2px 0 #3b1a78,
-    3px 3px 0 #2a1259,
-    0 12px 20px rgba(0, 0, 0, 0.45);
+  text-shadow: var(--title-depth);
 }
 
 .section-lead {
@@ -238,21 +310,21 @@ main:focus {
   color: var(--text);
   border-color: var(--border);
   box-shadow:
-    0 4px 0 #0c0c14,
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 4px 0 var(--key-edge),
+    inset 0 1px 0 var(--key-shine);
 }
 
 .btn-ghost:hover {
   border-color: var(--accent);
   box-shadow:
-    0 6px 0 #0c0c14,
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 6px 0 var(--key-edge),
+    inset 0 1px 0 var(--key-shine);
 }
 
 .btn-ghost:active {
   box-shadow:
-    0 1px 0 #0c0c14,
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 1px 0 var(--key-edge),
+    inset 0 1px 0 var(--key-shine);
 }
 
 /* ==========================================================================
@@ -275,7 +347,7 @@ main:focus {
   pointer-events: none;
   background: radial-gradient(
     circle at var(--glare-x, 50%) var(--glare-y, 50%),
-    rgba(255, 255, 255, 0.12),
+    var(--glare),
     transparent 55%
   );
   opacity: var(--glare-o, 0);
